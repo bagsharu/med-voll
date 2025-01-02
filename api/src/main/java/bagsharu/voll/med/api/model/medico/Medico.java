@@ -1,9 +1,17 @@
 package bagsharu.voll.med.api.model.medico;
 import bagsharu.voll.med.api.model.endereco.Endereco;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Table(name="medicos")
 @Entity(name= "Medico")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Medico {
 
     @Id
@@ -14,9 +22,9 @@ public class Medico {
     private String email;
     private String crm;
 
-    @Embedded
+    @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
-    @Enumerated(EnumType.STRING)
+    @Embedded
     private Endereco endereco;
 }
