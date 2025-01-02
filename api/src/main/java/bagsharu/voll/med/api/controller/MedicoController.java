@@ -1,6 +1,6 @@
 package bagsharu.voll.med.api.controller;
 
-import bagsharu.voll.med.api.model.endereco.medico.DadosCadastroMedico;
+import bagsharu.voll.med.api.model.medico.DadosCadastroMedico;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
