@@ -3,6 +3,7 @@ package bagsharu.voll.med.api.controller;
 import bagsharu.voll.med.api.model.medico.DadosCadastroMedico;
 import bagsharu.voll.med.api.model.medico.Medico;
 import bagsharu.voll.med.api.model.medico.MedicoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ public class MedicoController {
     private MedicoRepository repository;
 
     @PostMapping
+    @Transactional
     public void cadastrar(@RequestBody DadosCadastroMedico dados) {
-
         repository.save(new Medico(dados));
     }
 }
