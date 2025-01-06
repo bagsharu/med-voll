@@ -6,10 +6,7 @@ import bagsharu.voll.med.api.model.medico.MedicoRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/medicos")
@@ -23,7 +20,12 @@ public class MedicoController {
     public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
 
 
-        System.out.println(dados);
+        //System.out.println(dados);
         repository.save(new Medico(dados));
+    }
+
+    @GetMapping
+    public List<DadosMedicosCadastrados> listar(){
+
     }
 }
