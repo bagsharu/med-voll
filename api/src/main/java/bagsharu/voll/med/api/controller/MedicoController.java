@@ -36,4 +36,10 @@ public class MedicoController {
         // converter de Medico para o DTO.
         return repository.findAll(paginacao).map(DadosMedicosCadastrados::new);
     }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosCadastroMedico dados) {
+
+    }
 }
