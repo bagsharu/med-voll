@@ -89,5 +89,9 @@ public class Medico {
         }
 
     }
+
+    public void excluir() {
+        this.ativo = false;
+    }
 }
 
