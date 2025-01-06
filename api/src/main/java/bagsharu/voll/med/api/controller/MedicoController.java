@@ -7,6 +7,8 @@ import bagsharu.voll.med.api.model.medico.MedicoRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,10 +30,10 @@ public class MedicoController {
     }
 
     @GetMapping
-    public List<DadosMedicosCadastrados> listar(){
+    public Page<DadosMedicosCadastrados> listar(Pageable paginacao){
 
         // Retorna uma lista de DadosMedicosCadastrados com base no banco de dados, o map é para
         // converter de Medico para o DTO.
-        return repository.findAll().stream().map(DadosMedicosCadastrados::new).toList();
+        return repository.findAll(paginacao).map(DadosMedicosCadastrados::new);
     }
 }
