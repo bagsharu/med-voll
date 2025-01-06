@@ -1,9 +1,6 @@
 package bagsharu.voll.med.api.controller;
 
-import bagsharu.voll.med.api.model.medico.DadosCadastroMedico;
-import bagsharu.voll.med.api.model.medico.DadosMedicosCadastrados;
-import bagsharu.voll.med.api.model.medico.Medico;
-import bagsharu.voll.med.api.model.medico.MedicoRepository;
+import bagsharu.voll.med.api.model.medico.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +36,10 @@ public class MedicoController {
 
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosCadastroMedico dados) {
+    public void atualizar(@RequestBody @Valid DadosAtualizadosMedico dados) {
+
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
 
     }
 }
