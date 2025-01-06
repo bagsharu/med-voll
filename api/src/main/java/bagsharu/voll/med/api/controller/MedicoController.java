@@ -31,7 +31,7 @@ public class MedicoController {
 
         // Retorna uma lista de DadosMedicosCadastrados com base no banco de dados, o map é para
         // converter de Medico para o DTO.
-        return repository.findAll(paginacao).map(DadosMedicosCadastrados::new);
+        return repository.findAllByAtivoTrue(paginacao).map(DadosMedicosCadastrados::new);
     }
 
     @PutMapping
