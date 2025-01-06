@@ -29,10 +29,14 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
+    private Boolean ativo;
+
+
     public Medico() {
     }
 
     public Medico(DadosCadastroMedico dados) {
+        this.ativo = true;
         this.nome = dados.nome();
         this.crm = dados.crm();
         this.email = dados.email();
@@ -67,6 +71,10 @@ public class Medico {
 
     public Endereco getEndereco() {
         return endereco;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
     }
 
     public void atualizarInformacoes(DadosAtualizadosMedico dados) {
