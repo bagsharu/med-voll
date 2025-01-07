@@ -67,10 +67,21 @@ public class MedicoController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluir(@PathVariable Long id){
-//        repository.deleteById(id);
         var medico = repository.getReferenceById(id);
         medico.excluir();
 
         return ResponseEntity.noContent().build();
+    }
+
+
+    // Mapeamento da URL "/medicos/id"
+    @GetMapping("/{id}")
+    public ResponseEntity detalhar(@PathVariable Long id){
+
+        // Busca informações do médico cadastrado através do Id recebido
+        var medico = repository.getReferenceById(id);
+
+        // Retorna as informações desejadas
+        return ResponseEntity.ok(medico);
     }
 }
