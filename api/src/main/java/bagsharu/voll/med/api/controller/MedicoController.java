@@ -23,8 +23,12 @@ public class MedicoController {
     @Transactional
     public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
 
+        /*
 
-        //System.out.println(dados);
+        O POST devolve um código HTTP 201, porém este código exige informações adicionais como:
+        URI (Location), um body com as informações enviadas e o código 201.
+
+        */
         repository.save(new Medico(dados));
     }
 
