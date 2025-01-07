@@ -1,4 +1,4 @@
-package bagsharu.voll.med.api.model.endereco;
+package bagsharu.voll.med.api.domain.endereco;
 
 
 import jakarta.validation.constraints.NotBlank;

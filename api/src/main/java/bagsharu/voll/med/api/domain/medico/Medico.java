@@ -1,5 +1,5 @@
-package bagsharu.voll.med.api.model.medico;
-import bagsharu.voll.med.api.model.endereco.Endereco;
+package bagsharu.voll.med.api.domain.medico;
+import bagsharu.voll.med.api.domain.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

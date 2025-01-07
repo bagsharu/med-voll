@@ -1,4 +1,4 @@
-package bagsharu.voll.med.api.model.medico;
+package bagsharu.voll.med.api.domain.medico;
 
 public record DadosMedicosCadastrados(Long id, String nome, String email, String crm, Especialidade especialidade) {
 

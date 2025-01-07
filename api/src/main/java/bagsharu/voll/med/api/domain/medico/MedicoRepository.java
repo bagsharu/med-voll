@@ -1,4 +1,4 @@
-package bagsharu.voll.med.api.model.medico;
+package bagsharu.voll.med.api.domain.medico;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

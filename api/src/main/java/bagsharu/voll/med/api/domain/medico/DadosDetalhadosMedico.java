@@ -1,6 +1,6 @@
-package bagsharu.voll.med.api.model.medico;
+package bagsharu.voll.med.api.domain.medico;
 
-import bagsharu.voll.med.api.model.endereco.Endereco;
+import bagsharu.voll.med.api.domain.endereco.Endereco;
 
 public record DadosDetalhadosMedico(Long id, String nome, String email, String crm, String telefone, Especialidade especialidade, Endereco endereco) {
     public DadosDetalhadosMedico (Medico medico) {
