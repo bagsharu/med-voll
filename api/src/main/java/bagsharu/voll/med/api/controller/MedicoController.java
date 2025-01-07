@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroMedico dados) {
+    public ResponseEntity<DadosDetalhadosMedico> cadastrar(@RequestBody @Valid DadosCadastroMedico dados, UriComponentsBuilder uriBuilder) {
 
         /*
 
@@ -29,7 +30,17 @@ public class MedicoController {
         URI (Location), um body com as informações enviadas e o código 201.
 
         */
-        repository.save(new Medico(dados));
+
+        // Armazena os dados recebidos em uma variável e salva no banco de dados
+        var medicoCadastro = new Medico(dados);
+        repository.save(medicoCadastro);
+
+        // Armazena a URI em uma variável, o objeto uriBuilder pertence ao próprio Spring e cria o endreço
+        // acessado pelo client quando um novo médico é cadastrado.
+        var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(medicoCadastro.getId()).toUri();
+
+        // Retorna o código 201, a uri e os dados enviados e cadastrados no banco de dados
+        return ResponseEntity.created(uri).body(new DadosDetalhadosMedico(medicoCadastro));
     }
 
     @GetMapping
