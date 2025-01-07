@@ -28,11 +28,13 @@ public class MedicoController {
     }
 
     @GetMapping
-    public Page<DadosMedicosCadastrados> listar(Pageable paginacao){
+    public ResponseEntity <Page<DadosMedicosCadastrados>> listar(Pageable paginacao){
 
         // Retorna uma lista de DadosMedicosCadastrados com base no banco de dados, o map é para
         // converter de Medico para o DTO.
-        return repository.findAllByAtivoTrue(paginacao).map(DadosMedicosCadastrados::new);
+        var page = repository.findAllByAtivoTrue(paginacao).map(DadosMedicosCadastrados::new);
+
+        return ResponseEntity.ok(page);
     }
 
     @PutMapping
