@@ -71,6 +71,15 @@ public class MedicoController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity ativar(@PathVariable Long id){
+        var medico = repository.getReferenceById(id);
+        medico.ativar();
+
+        return ResponseEntity.noContent().build();
+    }
+
 
     // Mapeamento da URL "/medicos/id"
     @GetMapping("/{id}")

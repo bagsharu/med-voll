@@ -64,4 +64,12 @@ public class PacienteController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity ativar(@PathVariable Long id){
+        var paciente = repository.getReferenceById(id);
+        paciente.ativar();
+
+        return ResponseEntity.noContent().build();
+    }
 }
