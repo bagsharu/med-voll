@@ -2,7 +2,6 @@ package bagsharu.voll.med.api.domain.pacientes;
 
 
 import bagsharu.voll.med.api.domain.endereco.Endereco;
-import bagsharu.voll.med.api.domain.medico.DadosAtualizadosMedico;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -73,7 +72,7 @@ public class Paciente {
         return ativo;
     }
 
-    public void atualizarInformacoes(DadosAtualizadosMedico dados) {
+    public void atualizarInformacoes(@Valid DadosAtualizadosPaciente dados) {
         if (dados.nome() != null) {
             this.nome = dados.nome();
         }

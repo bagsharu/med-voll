@@ -1,10 +1,6 @@
 package bagsharu.voll.med.api.controller;
 
-import bagsharu.voll.med.api.domain.medico.DadosMedicosCadastrados;
-import bagsharu.voll.med.api.domain.pacientes.DadosCadastroPaciente;
-import bagsharu.voll.med.api.domain.pacientes.DadosDetalhadosPaciente;
-import bagsharu.voll.med.api.domain.pacientes.Paciente;
-import bagsharu.voll.med.api.domain.pacientes.PacienteRepository;
+import bagsharu.voll.med.api.domain.pacientes.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +41,17 @@ public class PacienteController {
         // Retorna uma lista de DadosCadastroPaciente com base no banco de dados, o map é para
         // converter de Medico para o DTO.
         var page = repository.findAllByAtivoTrue(paginacao).map(DadosDetalhadosPaciente::new);
-        
+
         return ResponseEntity.ok(page);
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizadosPaciente dados) {
+
+        var paciente = repository.getReferenceById(dados.id());
+        paciente.atualizarInformacoes(dados);
+
+        return ResponseEntity.ok(new DadosDetalhadosPaciente(paciente));
     }
 }
