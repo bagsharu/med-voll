@@ -14,7 +14,7 @@ A aplicação tem as funções **CRUD** para pacientes e médicos, através de r
 - **Java 17**: Linguagem de programação principal.
 - **Spring Boot**: Framework para simplificar o desenvolvimento de aplicações web.
   - **Spring Data JPA**: Para integração com o banco de dados.
-- **MyeSQL**: Banco de dados relacional utilizado para persistência.
+- **MySQL**: Banco de dados relacional utilizado para persistência.
 - **Maven**: Gerenciamento de dependências e build.
 - **Flyway**: Para controlar as versões do banco de dados.
 - **Lombok**: Para simplificar o código e deixar mais elegante.
