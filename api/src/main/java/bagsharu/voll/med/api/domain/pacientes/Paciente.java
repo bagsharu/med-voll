@@ -2,7 +2,9 @@ package bagsharu.voll.med.api.domain.pacientes;
 
 
 import bagsharu.voll.med.api.domain.endereco.Endereco;
+import bagsharu.voll.med.api.domain.medico.DadosAtualizadosMedico;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -69,5 +71,17 @@ public class Paciente {
 
     public Boolean getAtivo() {
         return ativo;
+    }
+
+    public void atualizarInformacoes(DadosAtualizadosMedico dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
     }
 }
