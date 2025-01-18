@@ -22,5 +22,7 @@ public class AutenticacaoController {
         // Converte informações do DTO login/senha para os dados recebidos pelo manager
         var token = new UsernamePasswordAuthenticationToken(dados.login(),dados.senha());
         var auth = manager.authenticate(token);
+
+        return ResponseEntity.ok().build();
     }
 }
