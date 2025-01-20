@@ -1,6 +1,8 @@
 package bagsharu.voll.med.api.controller;
 
 import bagsharu.voll.med.api.domain.usuario.DadosAutenticacao;
+import bagsharu.voll.med.api.domain.usuario.Usuario;
+import bagsharu.voll.med.api.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ public class AutenticacaoController {
     @Autowired
     private AuthenticationManager manager;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
 
@@ -25,6 +30,6 @@ public class AutenticacaoController {
         var token = new UsernamePasswordAuthenticationToken(dados.login(),dados.senha());
         var auth = manager.authenticate(token);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(tokenService.gerarToken((Usuario) auth.getPrincipal()));
     }
 }
