@@ -2,6 +2,7 @@ package bagsharu.voll.med.api.controller;
 
 import bagsharu.voll.med.api.domain.usuario.DadosAutenticacao;
 import bagsharu.voll.med.api.domain.usuario.Usuario;
+import bagsharu.voll.med.api.infra.security.DadosTokenJWT;
 import bagsharu.voll.med.api.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,11 @@ public class AutenticacaoController {
     public ResponseEntity efetuarLogin(@RequestBody @Valid DadosAutenticacao dados) {
 
         // Converte informações do DTO login/senha para os dados recebidos pelo manager
-        var token = new UsernamePasswordAuthenticationToken(dados.login(),dados.senha());
-        var auth = manager.authenticate(token);
+        var authtoken = new UsernamePasswordAuthenticationToken(dados.login(),dados.senha());
+        var auth = manager.authenticate(authtoken);
 
-        return ResponseEntity.ok(tokenService.gerarToken((Usuario) auth.getPrincipal()));
+        var tokenJWT = tokenService.gerarToken((Usuario) auth.getPrincipal());
+
+        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }
 }
