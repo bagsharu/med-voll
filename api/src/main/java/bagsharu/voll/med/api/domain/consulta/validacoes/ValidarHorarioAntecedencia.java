@@ -6,7 +6,7 @@ import bagsharu.voll.med.api.infra.exception.ValidacaoException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class ValidarHorarioAntecedencia {
+public class ValidarHorarioAntecedencia implements ValidadorAgendamento {
     public void validar(DadosAgendamentoConsulta dados) {
         var dataConsulta = dados.data();
         var agora = LocalDateTime.now();

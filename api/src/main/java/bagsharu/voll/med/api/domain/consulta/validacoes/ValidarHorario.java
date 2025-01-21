@@ -5,7 +5,7 @@ import bagsharu.voll.med.api.infra.exception.ValidacaoException;
 
 import java.time.DayOfWeek;
 
-public class ValidarHorario {
+public class ValidarHorario implements ValidadorAgendamento {
 
     public void validar(DadosAgendamentoConsulta dados) {
         var dataConsulta = dados.data();

@@ -4,7 +4,7 @@ import bagsharu.voll.med.api.domain.consulta.ConsultaRepository;
 import bagsharu.voll.med.api.domain.consulta.DadosAgendamentoConsulta;
 import bagsharu.voll.med.api.infra.exception.ValidacaoException;
 
-public class ValidarPacienteOutraConsulta {
+public class ValidarPacienteOutraConsulta implements ValidadorAgendamento{
 
     private ConsultaRepository repository;
 
