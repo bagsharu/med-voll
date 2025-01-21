@@ -1,5 +1,7 @@
 package bagsharu.voll.med.api.controller;
 
+import bagsharu.voll.med.api.domain.consulta.DadosAgendamentoConsulta;
+import bagsharu.voll.med.api.domain.consulta.DadosDetalhadosConsulta;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
