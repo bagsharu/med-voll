@@ -1,11 +1,14 @@
 package bagsharu.voll.med.api.domain.consulta;
 
+import bagsharu.voll.med.api.domain.consulta.validacoes.ValidadorAgendamento;
 import bagsharu.voll.med.api.domain.medico.Medico;
 import bagsharu.voll.med.api.domain.medico.MedicoRepository;
 import bagsharu.voll.med.api.domain.pacientes.PacienteRepository;
 import bagsharu.voll.med.api.infra.exception.ValidacaoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AgendaDeConsultas {
@@ -18,6 +21,9 @@ public class AgendaDeConsultas {
 
     @Autowired
     private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private List<ValidadorAgendamento> validadores;
 
     public void agendar(DadosAgendamentoConsulta dados) {
 
