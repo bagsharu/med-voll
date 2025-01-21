@@ -2,10 +2,12 @@ package bagsharu.voll.med.api.domain.consulta.validacoes;
 
 import bagsharu.voll.med.api.domain.consulta.DadosAgendamentoConsulta;
 import bagsharu.voll.med.api.infra.exception.ValidacaoException;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+@Component
 public class ValidarHorarioAntecedencia implements ValidadorAgendamento {
     public void validar(DadosAgendamentoConsulta dados) {
         var dataConsulta = dados.data();

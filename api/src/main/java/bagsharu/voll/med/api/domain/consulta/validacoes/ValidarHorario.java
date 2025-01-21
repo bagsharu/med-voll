@@ -2,9 +2,11 @@ package bagsharu.voll.med.api.domain.consulta.validacoes;
 
 import bagsharu.voll.med.api.domain.consulta.DadosAgendamentoConsulta;
 import bagsharu.voll.med.api.infra.exception.ValidacaoException;
+import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
+@Component
 public class ValidarHorario implements ValidadorAgendamento {
 
     public void validar(DadosAgendamentoConsulta dados) {
