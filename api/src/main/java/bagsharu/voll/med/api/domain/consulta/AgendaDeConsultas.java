@@ -1,5 +1,6 @@
 package bagsharu.voll.med.api.domain.consulta;
 
+import bagsharu.voll.med.api.domain.medico.Medico;
 import bagsharu.voll.med.api.domain.medico.MedicoRepository;
 import bagsharu.voll.med.api.domain.pacientes.PacienteRepository;
 import bagsharu.voll.med.api.infra.exception.ValidacaoException;
@@ -30,13 +31,25 @@ public class AgendaDeConsultas {
 
         // Recebe informações com base no Id
         var paciente = pacienteRepository.findById(dados.idPaciente()).get();
-        var medico = medicoRepository.findById(dados.idMedico()).get();
+        var medico = escolherMedico(dados);
 
         // Cria um objeto Consulta com todas as informações
         var consulta = new Consulta(null, medico, paciente,dados.data());
 
         consultaRepository.save(consulta);
 
+    }
+
+    private Medico escolherMedico(DadosAgendamentoConsulta dados) {
+        if (dados.idMedico() != null) {
+            return medicoRepository.getReferenceById(dados.idMedico());
+        }
+
+        if (dados.especialidade() == null) {
+            throw new ValidacaoException("Especialidade é obrigatório quando médico não foi escolhido!");
+        }
+
+        return medicoRepository.escolherMedicoAleatorio(dados.especialidade());
     }
 
 }
