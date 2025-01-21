@@ -2,6 +2,7 @@ package bagsharu.voll.med.api.domain.consulta;
 
 import bagsharu.voll.med.api.domain.medico.MedicoRepository;
 import bagsharu.voll.med.api.domain.pacientes.PacienteRepository;
+import bagsharu.voll.med.api.infra.exception.ValidacaoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,14 @@ public class AgendaDeConsultas {
     private PacienteRepository pacienteRepository;
 
     public void agendar(DadosAgendamentoConsulta dados) {
+
+        if(pacienteRepository.existsById(dados.idPaciente())){
+            throw new ValidacaoException("Id do paciente não existe");
+        }
+
+        if(dados.idMedico() != null && medicoRepository.existsById(dados.idMedico())){
+            throw new ValidacaoException("Id do médico não existe");
+        }
 
         // Recebe informações com base no Id
         var paciente = pacienteRepository.findById(dados.idPaciente()).get();
