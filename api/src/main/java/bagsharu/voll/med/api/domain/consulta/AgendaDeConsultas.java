@@ -35,6 +35,8 @@ public class AgendaDeConsultas {
             throw new ValidacaoException("Id do médico não existe");
         }
 
+        validadores.forEach(v -> v.validar(dados));
+
         // Recebe informações com base no Id
         var paciente = pacienteRepository.findById(dados.idPaciente()).get();
         var medico = escolherMedico(dados);
