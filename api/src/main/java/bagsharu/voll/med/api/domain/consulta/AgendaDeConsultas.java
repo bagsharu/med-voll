@@ -19,6 +19,15 @@ public class AgendaDeConsultas {
 
     public void agendar(DadosAgendamentoConsulta dados) {
 
+        // Recebe informações com base no Id
+        var paciente = pacienteRepository.findById(dados.idPaciente()).get();
+        var medico = medicoRepository.findById(dados.idMedico()).get();
+
+        // Cria um objeto Consulta com todas as informações
+        var consulta = new Consulta(null, medico, paciente,dados.data());
+
+        consultaRepository.save(consulta);
+
     }
 
 }
