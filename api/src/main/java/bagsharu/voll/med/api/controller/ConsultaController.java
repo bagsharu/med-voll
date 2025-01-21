@@ -18,6 +18,6 @@ public class ConsultaController {
     @Transactional
     public ResponseEntity agendar(@RequestBody @Valid DadosAgendamentoConsulta dados) {
         System.out.println(dados);
-        return ResponseEntity.ok(new DadosDetalhadosConsulta());
+        return ResponseEntity.ok(new DadosDetalhadosConsulta(null, null, null,null));
     }
 }
